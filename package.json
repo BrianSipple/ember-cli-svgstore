@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/salsify/ember-cli-svgstore",
   "dependencies": {
+    "broccoli-funnel": "^0.2.3",
     "broccoli-svgstore": "0.1.0",
     "broccoli-unwatched-tree": "^0.1.1",
     "make-array": "^0.1.2",
