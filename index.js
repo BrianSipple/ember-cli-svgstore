@@ -2,6 +2,7 @@ var merge = require('merge');
 var svgstore = require('broccoli-svgstore');
 var makeArray = require('make-array');
 var unwatchedTree = require('broccoli-unwatched-tree');
+var funnel = require('broccoli-funnel');
 
 module.exports = {
   name: 'ember-cli-svgstore',
@@ -15,6 +16,38 @@ module.exports = {
   treeForPublic: function() {
     var trees = this._makeSvgTrees(this.options().files);
     return this._maybeMerge(trees, 'output');
+  },
+
+  // Remove sprite files from the dist if they originate in the `/public` dir
+  postprocessTree: function(type, tree) {
+    if (type !== 'all') {
+      return tree;
+    }
+
+    var options = this.options();
+    var globalExclude = options.excludeSourceFiles;
+    var excludeGlobs = makeArray(this.options().files).reduce(function(result, fileSpec) {
+      var paths = [];
+
+      // Remove only if the `excludeSourceFiles` option is set
+      if (globalExclude || fileSpec.excludeSourceFiles) {
+        paths = makeArray(fileSpec.sourceDirs).filter(function(dir) {
+          return dir.match(/^public\//);
+        }).map(function(dir) {
+          return dir.replace(/^public\//, '') + '/*';
+        });
+      }
+
+      return result.concat(paths);
+    }, []);
+
+    if (excludeGlobs.length) {
+      tree = funnel(tree, {
+        exclude: excludeGlobs
+      });
+    }
+
+    return tree;
   },
 
   _makeSvgTrees: function(files) {

@@ -36,9 +36,33 @@ Given an input file in `app/icons/user.svg`, the contents of that file could be 
   </svg>
 ```
 
+SVGs that are processed by this addon are usually more or less static assets, and it makes sense for them to live in the project's `public/` dir. However, since ember-cli automatically includes all files in `/public` in the build, they effectively get duplicated. To prevent processed files from ending up in `dist/`, use the `excludeSourceFiles` flag:
+
+```js
+// Brocfile.js
+
+var app = new EmberApp({
+  svgstore: {
+    excludeSourceFiles: true, // exclude all processed source files
+    files: {
+      sourceDirs: [ 'public/icons' ],
+      outputFile: '/assets/icons.svg',
+      excludeSourceFiles: true // exclude source files only for this master SVG
+    }
+  }
+});
+```
+
+Note that if your source SVGs are in any other directory (i.e. `/app`, `/vendor`, etc.), they will not automatically be included in the build, and the `excludeSourceFiles` option is not necessary.
+
 ## Options
 
 ### `files`
 May be a single object or an array. Each object should have the following two keys:
  - `sourceDirs` a string or array of strings specifying the directories that should be crawled for SVGs to include
  - `outputFile` the destination to write the final SVG to
+ - `excludeSourceFiles` whether the files in `sourceDirs` are excluded from the build or not
+
+
+### `excludeSourceFiles`
+Boolean indicating whether all source files should be excluded from the build or not, defaults to `false`.
