@@ -3,6 +3,7 @@ var svgstore = require('broccoli-svgstore');
 var makeArray = require('make-array');
 var unwatchedTree = require('broccoli-unwatched-tree');
 var funnel = require('broccoli-funnel');
+var BroccoliMergeTrees = require('broccoli-merge-trees');
 
 module.exports = {
   name: 'ember-cli-svgstore',
@@ -66,7 +67,7 @@ module.exports = {
     if (trees.length === 1) {
       return trees[0];
     } else {
-      return this.mergeTrees(trees, {
+      return new BroccoliMergeTrees(trees, {
         description: 'TreeMerger (svgstore ' + description + ')'
       });
     }
