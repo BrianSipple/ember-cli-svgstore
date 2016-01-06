@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-svgstore",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Ember addon to combine SVGs as symbols in a spritesheet.",
   "main": "index.js",
   "scripts": {
