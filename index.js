@@ -3,7 +3,7 @@ var makeArray = require('make-array');
 
 var SVGStore = require('broccoli-svgstore');
 var UnwatchedTree = require('broccoli-unwatched-tree');
-var Funnel = require('broccoli-Funnel');
+var Funnel = require('broccoli-funnel');
 var MergeTrees = require('broccoli-merge-trees');
 
 module.exports = {
