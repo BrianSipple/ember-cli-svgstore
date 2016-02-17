@@ -1,32 +1,55 @@
 {
   "name": "ember-cli-svgstore",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Ember addon to combine SVGs as symbols in a spritesheet.",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "ember build",
+    "start": "ember server",
+    "test": "ember try:testall"
   },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/salsify/ember-cli-svgstore.git"
-  },
+  "repository": "git://github.com/salsify/ember-cli-svgstore.git",
   "keywords": [
     "ember-addon",
     "svg",
     "svgstore"
   ],
+  "engines": {
+    "node": ">= 0.10.0"
+  },
   "author": "Dan Freeman",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/salsify/ember-cli-svgstore/issues"
+  "devDependencies": {
+    "broccoli-asset-rev": "^2.2.0",
+    "ember-ajax": "0.7.1",
+    "ember-cli": "2.3.0",
+    "ember-cli-app-version": "^1.0.0",
+    "ember-cli-babel": "^5.1.5",
+    "ember-cli-dependency-checker": "^1.2.0",
+    "ember-cli-htmlbars": "^1.0.1",
+    "ember-cli-htmlbars-inline-precompile": "^0.3.1",
+    "ember-cli-inject-live-reload": "^1.3.1",
+    "ember-cli-qunit": "^1.2.1",
+    "ember-cli-release": "0.2.8",
+    "ember-cli-sri": "^2.0.0",
+    "ember-cli-uglify": "^1.2.0",
+    "ember-data": "^2.3.0",
+    "ember-disable-prototype-extensions": "^1.1.0",
+    "ember-disable-proxy-controllers": "^1.0.1",
+    "ember-export-application-global": "^1.0.4",
+    "ember-load-initializers": "^0.5.0",
+    "ember-resolver": "^2.0.3",
+    "ember-try": "^0.1.2",
+    "loader.js": "^4.0.0"
   },
-  "homepage": "https://github.com/salsify/ember-cli-svgstore",
+  "ember-addon": {
+    "configPath": "tests/dummy/config"
+  },
   "dependencies": {
-    "broccoli-funnel": "^0.2.3",
+    "broccoli-funnel": "^1.0.1",
     "broccoli-merge-trees": "^1.1.1",
-    "broccoli-svgstore": "0.1.0",
+    "broccoli-svgstore": "^0.1.0",
     "broccoli-unwatched-tree": "^0.1.1",
-    "make-array": "^0.1.2",
+    "make-array": "^1.0.1",
     "merge": "^1.2.0"
   }
 }

@@ -1,4 +1,4 @@
-# ember-cli-svgstore
+# ember-cli-svgstore [![Build Status](https://travis-ci.org/salsify/ember-cli-svgstore.svg?branch=master)](https://travis-ci.org/salsify/ember-cli-svgstore)
 
 This Ember-CLI plugin uses [broccoli-svgstore](https://github.com/jmarquis/broccoli-svgstore) to combine the contents
 of individual SVG files as named symbols in one (or more) master SVGs.
