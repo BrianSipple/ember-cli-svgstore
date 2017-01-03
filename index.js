@@ -16,7 +16,8 @@ module.exports = {
   },
 
   treeForPublic: function() {
-    var trees = this._makeSvgTrees(this.options().files);
+    var options = this.options();
+    var trees = this._makeSvgTrees(options.files, options.svgstoreOpts);
     return this._maybeMerge(trees, 'output');
   },
 
@@ -52,9 +53,12 @@ module.exports = {
     return tree;
   },
 
-  _makeSvgTrees: function(files) {
+  _makeSvgTrees: function(files, svgstoreOpts) {
     return makeArray(files).map(function(fileSpec) {
-      return new SVGStore(this._makeSourceTree(fileSpec), { outputFile: fileSpec.outputFile });
+      return new SVGStore(this._makeSourceTree(fileSpec), {
+        outputFile: fileSpec.outputFile,
+        svgstoreOpts: svgstoreOpts
+      });
     }, this);
   },
 

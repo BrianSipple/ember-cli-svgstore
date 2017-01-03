@@ -8,6 +8,11 @@ module.exports = function(defaults) {
       files: {
         sourceDirs: 'tests/dummy/app/icons',
         outputFile: '/assets/test-icons.svg'
+      },
+      svgstoreOpts: {
+        svgAttrs: {
+          style: 'position: absolute; top: 0; left: 0; width: 0%; height: 0%;'
+        }
       }
     }
   });
