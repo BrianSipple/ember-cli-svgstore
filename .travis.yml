@@ -23,7 +23,7 @@ matrix:
   allow_failures:
     - env: EMBER_TRY_SCENARIO=ember-canary
 
-before_install:
+before_script:
   - yarn global add bower phantomjs-prebuilt
   - bower install
 
