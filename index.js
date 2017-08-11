@@ -10,6 +10,19 @@ var MergeTrees = require('broccoli-merge-trees');
 module.exports = {
   name: 'ember-cli-svgstore',
 
+  included: function(app, parentAddon) {
+    // Ensures that imports work for nested addons and engines
+    // @see: https://github.com/ember-cli/ember-cli/issues/3718
+
+    let target = parentAddon || app;
+
+    if (target.app) {
+      target = target.app;
+    }
+
+    this.app = target;
+  },
+
   options: function() {
     return this._options = this._options || merge(true, {}, {
       files: []
