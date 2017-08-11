@@ -2,7 +2,8 @@ var merge = require('merge');
 var makeArray = require('make-array');
 
 var SVGStore = require('broccoli-svgstore');
-var UnwatchedTree = require('broccoli-unwatched-tree');
+var broccoliSource = require('broccoli-source');
+var UnwatchedDir = broccoliSource.UnwatchedDir;
 var Funnel = require('broccoli-funnel');
 var MergeTrees = require('broccoli-merge-trees');
 
@@ -63,7 +64,9 @@ module.exports = {
   },
 
   _makeSourceTree: function(fileSpec) {
-    var inputs = makeArray(fileSpec.sourceDirs).map(UnwatchedTree);
+    var inputs = makeArray(fileSpec.sourceDirs).map((directoryPath) => {
+      return new UnwatchedDir(directoryPath);
+    });
     return this._maybeMerge(inputs, 'sources: ' + fileSpec.outputFile);
   },
 
