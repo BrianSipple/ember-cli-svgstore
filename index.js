@@ -76,7 +76,8 @@ module.exports = {
       return trees[0];
     } else {
       return new MergeTrees(trees, {
-        description: 'TreeMerger (SVGStore ' + description + ')'
+        annotation: 'TreeMerger (SVGStore ' + description + ')',
+        overwrite: true
       });
     }
   }
