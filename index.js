@@ -7,8 +7,26 @@ var UnwatchedDir = broccoliSource.UnwatchedDir;
 var Funnel = require('broccoli-funnel');
 var MergeTrees = require('broccoli-merge-trees');
 
+// For ember-cli < 2.7 findHost doesnt exist so we backport from that version for earlier version of ember-cli.
+// https://github.com/ember-cli/ember-cli/blame/16e4492c9ebf3348eb0f31df17215810674dbdf6/lib/models/addon.js#L533
+function findHostShim() {
+  var current = this;
+  var app;
+  do {
+    app = current.app || app;
+  } while (current.parent.parent && (current = current.parent))
+  return app;
+}
+
 module.exports = {
   name: 'ember-cli-svgstore',
+
+  included: function () {
+    var findHost = this._findHost || findHostShim;
+    this.app = findHost.call(this);
+
+    this._super.included.apply(this, arguments);
+  },
 
   options: function() {
     return this._options = this._options || merge(true, {}, {
